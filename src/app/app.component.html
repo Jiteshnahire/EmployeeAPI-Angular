@@ -1,0 +1,87 @@
+
+<div *ngIf="employees" class="container emp-table">
+
+  <div class="headers">
+    <h2 class="table-title">Employee List</h2>
+    <button type="button" (click)="addnew()" class="btn btn-primary">Add Employee</button>
+  </div>
+  <br/>
+  <section *ngIf="isList">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Age</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let employee of employees">
+       <td>{{employee['id']}}</td>
+       <td>{{employee['name']}}</td>
+       <td>{{employee['designation']}}</td>
+       <td>{{employee['age']}}</td>
+       <td>
+        <td>
+          <button class="btn btn-primary"(click)="updateEmployee(employee)">Edit</button>
+      </td>
+      <td>
+          <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
+      </td>
+      </tr>
+  
+    </tbody>
+  </table>
+</section>
+  </div>
+
+<section *ngIf="!isList">
+<form [formGroup]="empDetail">
+  <div class="container">
+    <!-- <div class="row">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" formControlName="id" id="floatingInput" placeholder="Id">
+          <label for="floatingInput">Id</label>
+        </div>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control"formControlName="name"  id="floatingInput" placeholder="Name">
+          <label for="floatingInput">Name</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" formControlName="designation" placeholder="Designation">
+          <label for="floatingInput">Designation</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" formControlName="age" placeholder="age">
+          <label for="floatingInput">Age</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-floating mb-3">
+          <input type="submit" value="Save" *ngIf="!isUpdate" class="btn btn-primary" (click)="saveEmployee()"/>
+          <input type="submit" value="Update" *ngIf="isUpdate" class="btn btn-primary" (click)="postUpdateEmp()"/>
+          <input type="submit" value="Cancel"  class="btn btn-primary" (click)="addnew()"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</section>
